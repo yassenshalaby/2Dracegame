@@ -1,0 +1,32 @@
+{
+  "project_info": {
+    "project_number": "613756839170",
+    "firebase_url": "https://drace-79436-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "drace-79436",
+    "storage_bucket": "drace-79436.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613756839170:ios:437609d5dd14c354798e1b",
+        "android_client_info": {
+          "package_name": "com.yassen.2drace"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBwIAhHyYWZ0V9N7FstAdqFIS55mwSJG4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
