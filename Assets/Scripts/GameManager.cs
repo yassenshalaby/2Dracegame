@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 90;
     }
 
     public void TriggerGameOver(Vector3 position)

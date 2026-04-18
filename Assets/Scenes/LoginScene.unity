@@ -1185,6 +1185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 361284113}
   - component: {fileID: 361284112}
+  - component: {fileID: 361284114}
   m_Layer: 0
   m_Name: FirebaseManager
   m_TagString: Untagged
@@ -1211,6 +1212,7 @@ MonoBehaviour:
   signupPassword: {fileID: 1190440535}
   loginPanel: {fileID: 1570051650}
   signupPanel: {fileID: 1639539654}
+  titleText: {fileID: 103400320}
 --- !u!4 &361284113
 Transform:
   m_ObjectHideFlags: 0
@@ -1226,6 +1228,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &361284114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361284111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9795ece5cbf9b45c2be0ae5202b3f1c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TitleColorManager
+  titleText: {fileID: 103400320}
 --- !u!1 &386944929
 GameObject:
   m_ObjectHideFlags: 0

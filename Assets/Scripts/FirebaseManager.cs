@@ -2,9 +2,11 @@ using UnityEngine;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
+using Firebase.RemoteConfig;
 using Firebase.Extensions;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class FirebaseManager : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class FirebaseManager : MonoBehaviour
     public GameObject loginPanel;
     public GameObject signupPanel;
 
+    [Header("Remote Config")]
+    public TMP_Text titleText;
+
     private FirebaseAuth _auth;
     private DatabaseReference _dbRef;
     private bool _firebaseReady;
@@ -34,12 +39,51 @@ public class FirebaseManager : MonoBehaviour
                 _auth = FirebaseAuth.DefaultInstance;
                 _dbRef = FirebaseDatabase.DefaultInstance.RootReference;
                 _firebaseReady = true;
+                FetchTitleColor();
             }
             else
             {
                 Debug.LogError("Firebase not available: " + task.Result);
             }
         });
+    }
+
+    void FetchTitleColor()
+    {
+        FirebaseRemoteConfig config = FirebaseRemoteConfig.DefaultInstance;
+
+        ConfigSettings settings = new ConfigSettings
+        {
+            MinimumFetchIntervalInMilliseconds = 0
+        };
+
+        config.SetConfigSettingsAsync(settings).ContinueWithOnMainThread(_ =>
+        {
+            config.SetDefaultsAsync(new Dictionary<string, object>
+            {
+                { "title_color", "255,255,255" }
+            }).ContinueWithOnMainThread(__ =>
+            {
+                config.FetchAndActivateAsync().ContinueWithOnMainThread(___ =>
+                {
+                    string value = config.GetValue("title_color").StringValue;
+                    ApplyTitleColor(value);
+                });
+            });
+        });
+    }
+
+    void ApplyTitleColor(string rgb)
+    {
+        string[] parts = rgb.Split(',');
+        if (parts.Length != 3) return;
+
+        float r = float.Parse(parts[0]) / 255f;
+        float g = float.Parse(parts[1]) / 255f;
+        float b = float.Parse(parts[2]) / 255f;
+
+        if (titleText != null)
+            titleText.color = new Color(r, g, b);
     }
 
     public void ShowSignup()
